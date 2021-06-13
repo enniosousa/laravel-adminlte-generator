@@ -1,3 +1,20 @@
+# Commands to install
+
+### install dependencies
+```
+composer install
+```
+
+### create env file from copy
+```
+cp .env.example .env
+```
+
+### generate the app key
+```
+php artisan key:gen
+```
+
 <h1 align="center"><img src="https://assets.infyom.com/open-source/infyom-logo.png" alt="InfyOm"></h1>
 
 # Laravel Boilerplate for AdminLTE Theme
