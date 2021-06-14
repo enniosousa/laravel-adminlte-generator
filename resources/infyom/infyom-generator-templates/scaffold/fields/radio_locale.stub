@@ -1,0 +1,6 @@
+<!-- $FIELD_NAME_TITLE$ Field -->
+<div class="custom-control custom-radio">
+    {!! Form::radio('$FIELD_NAME$', "$VALUE$", null, ['class' => 'custom-control-input'. $errors->first('$FIELD_NAME$', ' is-invalid'), 'id'=> '$FIELD_NAME$']) !!}
+    {!! Form:label('$FIELD_NAME$', __('models/$MODEL_NAME_PLURAL_CAMEL$.fields.$FIELD_NAME$').':', ['class'=> 'custom-control-label']) !!}
+    {!! $errors->first('$FIELD_NAME$', '<div class="invalid-feedback">:message</div>') !!}
+</div>
