@@ -30,4 +30,15 @@ class Update$MODEL_NAME$Request extends FormRequest
         $UNIQUE_RULES$
         return $rules;
     }
+
+    /**
+    * Get custom attributes for validator errors.
+    *
+    * @return array
+    */
+    public function attributes()
+    {
+        $attrs = trans('models/$MODEL_NAME_PLURAL_CAMEL$.fields');
+        return is_array($attrs) ? $attrs : [];
+    }
 }
