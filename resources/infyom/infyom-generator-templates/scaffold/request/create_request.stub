@@ -1,0 +1,31 @@
+<?php
+
+namespace $NAMESPACE_REQUEST$;
+
+use Illuminate\Foundation\Http\FormRequest;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use Illuminate\Support\Facades\Auth;
+
+class Create$MODEL_NAME$Request extends FormRequest
+{
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return Auth::check();
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return $MODEL_NAME$::$rules;
+    }
+}
