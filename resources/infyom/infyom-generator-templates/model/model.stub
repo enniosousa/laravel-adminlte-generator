@@ -3,6 +3,7 @@
 namespace $NAMESPACE_MODEL$;
 
 use $NAMESPACE_MODEL_EXTEND$ as Model;
+use Collective\Html\Eloquent\FormAccessible;
 $SOFT_DELETE_IMPORT$
 $HAS_FACTORY_IMPORT$
 
@@ -11,6 +12,7 @@ class $MODEL_NAME$ extends Model
 {
 $SOFT_DELETE$
 $HAS_FACTORY$
+use FormAccessible;
     
     /*
       |--------------------------------------------------------------------------
@@ -53,6 +55,13 @@ $PRIMARY$
       |--------------------------------------------------------------------------
      */
     $RELATIONS$
+     
+    /*
+      |--------------------------------------------------------------------------
+      | FORMS (get form attribute)
+      | https://laravelcollective.com/docs/6.x/html#form-model-accessors
+      |--------------------------------------------------------------------------
+     */
      
     /*
       |--------------------------------------------------------------------------
