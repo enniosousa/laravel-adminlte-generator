@@ -8,6 +8,8 @@ use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
 use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
 use $NAMESPACE_MODEL$\$MODEL_NAME$;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Proengsoft\JsValidation\Facades\JsValidatorFacade as JsValidator;
 use Flash;
 use Response;
@@ -161,5 +163,57 @@ class $MODEL_NAME$Controller extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+    }
+
+    /**
+     * JSON a listing of the $MODEL_NAME$ to Select2.
+     *
+     * @param  Request $request
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function select2(Request $request)
+    {
+        //
+        // SQL BUILDER
+        $query = $MODEL_NAME$::when($request->term, function ($query) use ($request) {
+                $query->where('name', 'like', "%$request->term%");
+            })
+            ->select([
+                'id',
+                'name as text'
+            ])
+        ;
+
+        //
+        // CONFIGURE PAGINATION
+        $currentPage = $request->input('page', 1);
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
+
+        //
+        // RETRIEVE DATA
+        $collection = $query->paginate($request->input('per_page', 100));
+
+        //
+        // TRANSFORM COLLECTION TO SELECT2 PARTNER
+        $collection
+            ->getCollection()
+            ->transform(function ($value) {
+                return $value->toArray();
+            })
+        ;
+
+        //
+        // RESPONSE
+        return [
+            'results'=> $collection->items(),
+            'pagination'=> [
+                'more'=> $currentPage < $collection->lastPage(),
+            ],
+        ];
     }
 }

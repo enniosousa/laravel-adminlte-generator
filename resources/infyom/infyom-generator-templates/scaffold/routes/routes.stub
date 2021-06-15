@@ -1,0 +1,4 @@
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('$MODEL_NAME_PLURAL_CAMEL$/select2', [$NAMESPACE_CONTROLLER$\$PATH_PREFIX$$MODEL_NAME$Controller::class, 'select2'])->name('$MODEL_NAME_PLURAL_CAMEL$.select2');
+    Route::resource('$MODEL_NAME_PLURAL_CAMEL$', $NAMESPACE_CONTROLLER$\$PATH_PREFIX$$MODEL_NAME$Controller::class);
+});
