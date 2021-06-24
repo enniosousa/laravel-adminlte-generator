@@ -3,8 +3,8 @@
     {!! Form::label('$FIELD_NAME$', __('models/$MODEL_NAME_PLURAL_CAMEL$.fields.$FIELD_NAME$').':') !!}
     <div class="input-group">
         <div class="custom-file">
-            {!! Form::file('$FIELD_NAME$', ['class' => 'custom-file-input'. $errors->first('$FIELD_NAME$', ' is-invalid'), 'data-browse'=> __('fields.file.browse')]) !!}
-            {!! Form::label('$FIELD_NAME$', __('fields.file.choose-file'), ['class' => 'custom-file-label']) !!}
+            {!! Form::file('$FIELD_NAME$', ['class' => 'custom-file-input'. $errors->first('$FIELD_NAME$', ' is-invalid')]) !!}
+            {!! Form::label('$FIELD_NAME$', __('fields.file.choose-file'), ['class' => 'custom-file-label', 'data-browse'=> __('fields.file.browse')]) !!}
             {!! $errors->first('$FIELD_NAME$', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
